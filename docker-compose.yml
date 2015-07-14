@@ -1,0 +1,17 @@
+app:
+  build: app/
+  restart: on-failure
+  expose:
+   - "8000"
+
+nginx:
+  build: nginx/
+  restart: on-failure
+  ports:
+   - "80:80"
+
+  links:
+    - app:app
+
+  volumes_from:
+    - app
